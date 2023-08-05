@@ -8,6 +8,8 @@ module.exports = {
     'js/inicio' : './src/js/inicio.js',
     'js/especialidades/index': './src/js/especialidades/index.js',
     'js/clinicas/index': './src/js/clinicas/index.js',
+    'js/pacientes/index': './src/js/pacientes/index.js',
+
 
   },
   output: {
