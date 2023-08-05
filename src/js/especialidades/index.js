@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
 const formulario = document.querySelector('form')
-const tablaProductos = document.getElementById('tablaEspecialidades');
+const tablaEspecialidades = document.getElementById('tablaEspecialidades');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
 const btnGuardar = document.getElementById('btnGuardar');
@@ -107,7 +107,7 @@ const buscar = async () => {
                 buttonEliminar.addEventListener('click', () => eliminar(especialidad.especialidad_id))
 
                 td1.innerText = contador;
-                td2.innerText = producto.especialidad_nombre
+                td2.innerText = especialidad.especialidad_nombre
                 
                 
                 // ESTRUCTURANDO DOM

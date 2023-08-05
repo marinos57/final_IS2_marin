@@ -9,12 +9,10 @@ use MVC\Router;
 class EspecialidadController{
     public static function index(Router $router){
         $especialidades = Especialidad::all();
-        // $productos2 = Producto::all();
-        // var_dump($productos);
-        // exit;
+       
         $router->render('especialidades/index', [
             'especialidades' => $especialidades,
-            // 'productos2' => $productos2,
+   
         ]);
 
     }
@@ -47,7 +45,7 @@ class EspecialidadController{
 
     public static function modificarAPI(){
         try {
-            $producto = new Especialidad($_POST);
+            $especialidad = new Especialidad($_POST);
             $resultado = $especialidad->actualizar();
 
             if($resultado['resultado'] == 1){

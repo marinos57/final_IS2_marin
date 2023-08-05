@@ -17,7 +17,7 @@ class Especialidad extends ActiveRecord{
     {
         $this->especialidad_id = $args['especialidad_id'] ?? null;
         $this->especialidad_nombre = $args['especialidad_nombre'] ?? '';
-        $this->especialidad_situacion = $args['especialidad_situacion'] ?? '';
+        $this->especialidad_situacion = $args['especialidad_situacion'] ?? '1';
     }
 
 }
