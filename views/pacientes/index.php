@@ -55,4 +55,4 @@
         </table>
     </div>
 </div>
-<script src="<?= asset('./build/js/clinicas/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/pacientes/index.js')  ?>"></script>
