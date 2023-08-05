@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { validarFormulario, Toast, confirmacion} from "../funciones";
 
 const formulario = document.querySelector('form')
-const tablaEspecialidades = document.getElementById('tablaEspecialidades');
+const tablaClinicas = document.getElementById('tablaClinicas');
 const btnBuscar = document.getElementById('btnBuscar');
 const btnModificar = document.getElementById('btnModificar');
 const btnGuardar = document.getElementById('btnGuardar');
@@ -17,7 +17,7 @@ btnCancelar.parentElement.style.display = 'none'
 
 const guardar = async (evento) => {
     evento.preventDefault();
-    if(!validarFormulario(formulario, ['especialidad_id'])){
+    if(!validarFormulario(formulario, ['clinica_id'])){
         Toast.fire({
             icon: 'info',
             text: 'Debe llenar todos los datos'
@@ -26,8 +26,8 @@ const guardar = async (evento) => {
     }
 
     const body = new FormData(formulario)
-    body.delete('especialidad_id')
-    const url = '/final_IS2_marin/API/especialidades/guardar';
+    body.delete('clinica_id')
+    const url = '/final_IS2_marin/API/clinicas/guardar';
     const config = {
         method : 'POST',
         // body: otroNombre
@@ -71,8 +71,8 @@ const guardar = async (evento) => {
 
 const buscar = async () => {
 
-    let especialidad_nombre = formulario.especialidad_nombre.value;
-    const url = `/final_IS2_marin/API/especialidades/buscar?especialidad_nombre=${especialidad_nombre}`;
+    let clinica_nombre = formulario.clinica_nombre.value;
+    const url = `/final_IS2_marin/API/clinicas/buscar?clinica_nombre=${clinica_nombre}`;
     const config = {
         method : 'GET'
     }
@@ -81,13 +81,13 @@ const buscar = async () => {
         const respuesta = await fetch(url, config)
         const data = await respuesta.json();
         
-        tablaEspecialidades.tBodies[0].innerHTML = ''
+        tablaClinicas.tBodies[0].innerHTML = ''
         const fragment = document.createDocumentFragment();
         console.log(data);
         // return;
         if(data.length > 0){
             let contador = 1;
-            data.forEach( especialidad => {
+            data.forEach( clinica => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td')
@@ -103,11 +103,11 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar'
                 buttonEliminar.textContent = 'Eliminar'
 
-                buttonModificar.addEventListener('click', () => colocarDatos(especialidad))
-                buttonEliminar.addEventListener('click', () => eliminar(especialidad.especialidad_id))
+                buttonModificar.addEventListener('click', () => colocarDatos(clinica))
+                buttonEliminar.addEventListener('click', () => eliminar(clinica.clinica_id))
 
                 td1.innerText = contador;
-                td2.innerText = especialidad.especialidad_nombre
+                td2.innerText = clinica.clinica_nombre
                 
                 
                 // ESTRUCTURANDO DOM
@@ -132,15 +132,15 @@ const buscar = async () => {
             fragment.appendChild(tr);
         }
 
-        tablaEspecialidades.tBodies[0].appendChild(fragment)
+        tablaClinicas.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
     }
 }
 
 const colocarDatos = (datos) => {
-    formulario.especialidad_nombre.value = datos.especialidad_nombre
-    formulario.especialidad_id.value = datos.especialidad_id
+    formulario.clinica_nombre.value = datos.clinica_nombre
+    formulario.clinica_id.value = datos.clinica_id
 
     btnGuardar.disabled = true
     btnGuardar.parentElement.style.display = 'none'
@@ -174,7 +174,7 @@ const modificar = async () => {
     }
 
     const body = new FormData(formulario)
-    const url = '/final_IS2_marin/API/especialidades/modificar';
+    const url = '/final_IS2_marin/API/clinicas/modificar';
     const config = {
         method : 'POST',
         body
@@ -217,8 +217,8 @@ const modificar = async () => {
 const eliminar = async (id) => {
     if(await confirmacion('warning','¿Desea eliminar este registro?')){
         const body = new FormData()
-        body.append('especialidad_id', id)
-        const url = '/final_IS2_marin/API/especialidades/eliminar';
+        body.append('clinica_id', id)
+        const url = '/final_IS2_marin/API/clinicas/eliminar';
         const config = {
             method : 'POST',
             body
