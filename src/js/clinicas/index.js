@@ -123,6 +123,9 @@ const buscar = async () => {
 
                 contador++;
             })
+
+            //tablaClinicas.classList.add('table table-bordered table-hover');
+
         }else{
             const tr = document.createElement('tr');
             const td = document.createElement('td')
@@ -255,8 +258,6 @@ const eliminar = async (id) => {
         }
     }
     
-
-
 }
 
 buscar();
