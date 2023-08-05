@@ -19,11 +19,11 @@ $router->get('/API/especialidades/buscar', [EspecialidadController::class,'busca
 
 //clinicas
 
-$router->get('/clinicas', [EspecialidadController::class,'index'] );
-$router->post('/API/especialidades/guardar', [EspecialidadController::class,'guardarAPI'] );
-$router->post('/API/especialidades/modificar', [EspecialidadController::class,'modificarAPI'] );
-$router->post('/API/especialidades/eliminar', [EspecialidadController::class,'eliminarAPI'] );
-$router->get('/API/especialidades/buscar', [EspecialidadController::class,'buscarAPI'] );
+$router->get('/clinicas', [ClinicaController::class,'index'] );
+$router->post('/API/clinicas/guardar', [ClinicaController::class,'guardarAPI'] );
+$router->post('/APIclinicas/modificar', [ClinicaController::class,'modificarAPI'] );
+$router->post('/APIclinicas/eliminar', [ClinicaController::class,'eliminarAPI'] );
+$router->get('/APIclinicas/buscar', [ClinicaController::class,'buscarAPI'] );
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
