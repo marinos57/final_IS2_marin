@@ -3,7 +3,7 @@
 namespace Controllers;
 
 use Exception;
-use Model\Producto;
+use Model\Especialidad;
 use MVC\Router;
 
 class EspecialidadController{
@@ -21,8 +21,8 @@ class EspecialidadController{
 
     public static function guardarAPI(){
         try {
-            $producto = new Producto($_POST);
-            $resultado = $producto->crear();
+            $especialidad = new Especialidad($_POST);
+            $resultado = $especialidad->crear();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -47,8 +47,8 @@ class EspecialidadController{
 
     public static function modificarAPI(){
         try {
-            $producto = new Producto($_POST);
-            $resultado = $producto->actualizar();
+            $producto = new Especialidad($_POST);
+            $resultado = $especialidad->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -73,10 +73,10 @@ class EspecialidadController{
 
     public static function eliminarAPI(){
         try {
-            $producto_id = $_POST['producto_id'];
-            $producto = Producto::find($producto_id);
-            $producto->producto_situacion = 0;
-            $resultado = $producto->actualizar();
+            $especialidad_id = $_POST['especialidad_id'];
+            $especialidad = Especialidad::find($especialidad_id);
+            $especialidad->$especialidad_situacion = 0;
+            $resultado = $especialidad->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -101,21 +101,18 @@ class EspecialidadController{
 
     public static function buscarAPI(){
         // $productos = Producto::all();
-        $producto_nombre = $_GET['producto_nombre'];
-        $producto_precio = $_GET['producto_precio'];
+        $especialidad_nombre = $_GET['especialidad_nombre'];
+       
 
         $sql = "SELECT * FROM productos where producto_situacion = 1 ";
-        if($producto_nombre != '') {
-            $sql.= " and producto_nombre like '%$producto_nombre%' ";
-        }
-        if($producto_precio != '') {
-            $sql.= " and producto_precio = $producto_precio ";
+        if($especialidad_nombre != '') {
+            $sql.= " and especialidad_nombre like '%$especialidad_nombre%' ";
         }
         try {
             
-            $productos = Producto::fetchArray($sql);
+            $especialidades = Especialidad::fetchArray($sql);
     
-            echo json_encode($productos);
+            echo json_encode($especialidades);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
