@@ -1,6 +1,6 @@
 <h1 class="text-center">Formulario de ingreso de Especialidades</h1>
 <div class="row justify-content-center mb-5">
-    <form class="col-lg-8 border bg-light p-3" id="formularioProducto">
+    <form class="col-lg-8 border bg-light p-3" id="formularioEspecialidades">
         <input type="hidden" name="especialidad_id" id="especialidad_id">
         <div class="row mb-3">
             <div class="col">

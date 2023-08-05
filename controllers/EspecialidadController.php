@@ -71,23 +71,41 @@ class EspecialidadController{
 
     public static function eliminarAPI(){
         try {
-            $especialidad_id = $_POST['especialidad_id'];
-            $especialidad = Especialidad::find($especialidad_id);
-            $especialidad->$especialidad_situacion = 0;
-            $resultado = $especialidad->actualizar();
-
-            if($resultado['resultado'] == 1){
+            // Verificar que se reciba el ID de la especialidad en la solicitud POST
+            if(isset($_POST['especialidad_id'])){
+                $especialidad_id = $_POST['especialidad_id'];
+                $especialidad = Especialidad::find($especialidad_id);
+                
+                // Verificar si se encontró la especialidad con el ID proporcionado
+                if(!$especialidad){
+                    echo json_encode([
+                        'mensaje' => 'La especialidad no existe en la base de datos',
+                        'codigo' => 0
+                    ]);
+                    return;
+                }
+    
+                // Actualizar la propiedad "especialidad_situacion" para marcar la especialidad como eliminada
+                $especialidad->especialidad_situacion = 0;
+                $resultado = $especialidad->actualizar();
+    
+                if($resultado['resultado'] == 1){
+                    echo json_encode([
+                        'mensaje' => 'Registro eliminado correctamente',
+                        'codigo' => 1
+                    ]);
+                }else{
+                    echo json_encode([
+                        'mensaje' => 'Ocurrió un error al eliminar el registro',
+                        'codigo' => 0
+                    ]);
+                }
+            } else {
                 echo json_encode([
-                    'mensaje' => 'Registro eliminado correctamente',
-                    'codigo' => 1
-                ]);
-            }else{
-                echo json_encode([
-                    'mensaje' => 'Ocurrió un error',
+                    'mensaje' => 'No se proporcionó el ID de la especialidad',
                     'codigo' => 0
                 ]);
             }
-            // echo json_encode($resultado);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
@@ -96,13 +114,14 @@ class EspecialidadController{
             ]);
         }
     }
+    
 
     public static function buscarAPI(){
         // $productos = Producto::all();
         $especialidad_nombre = $_GET['especialidad_nombre'];
        
 
-        $sql = "SELECT * FROM productos where producto_situacion = 1 ";
+        $sql = "SELECT * FROM especialidades where especialidad_situacion = 1 ";
         if($especialidad_nombre != '') {
             $sql.= " and especialidad_nombre like '%$especialidad_nombre%' ";
         }

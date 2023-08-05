@@ -254,7 +254,11 @@ const eliminar = async (id) => {
             console.log(error);
         }
     }
+    
+
+
 }
+
 buscar();
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
