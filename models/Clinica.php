@@ -18,7 +18,7 @@ class Clinica extends ActiveRecord{
     {
         $this->clinica_id = $args['clinica_id'] ?? null;
         $this->clinica_nombre = $args['clinica_nombre'] ?? '';
-        $this->clinica_situacion = $args['clinica_situacion'] ?? '';
+        $this->clinica_situacion = $args['clinica_situacion'] ?? '1';
     }
 
 }

@@ -26,7 +26,7 @@
 </div>
 <div class="row justify-content-center" id="divTabla">
     <div class="col-lg-8">
-        <h2>Listado de especialidades</h2>
+        <h2>Listado de Clinicas</h2>
         <table class="table table-bordered table-hover" id="tablaClinicas">
             <thead class="table-dark">
                 <tr>
@@ -39,4 +39,4 @@
         </table>
     </div>
 </div>
-<script src="<?= asset('./build/js/especialidades/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/clinicas/index.js')  ?>"></script>

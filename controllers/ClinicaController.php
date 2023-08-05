@@ -10,8 +10,8 @@ class ClinicaController{
     public static function index(Router $router){
         $clinicas = Clinica::all();
        
-        $router->render('clinicas$clinicas/index', [
-            'clinicas$clinicas' => $clinicas,
+        $router->render('clinicas/index', [
+            'clinicas' => $clinicas,
    
         ]);
 
