@@ -21,8 +21,8 @@ class PacienteController{
 
     public static function guardarAPI(){
         try {
-            $producto = new Producto($_POST);
-            $resultado = $producto->crear();
+            $paciente = new Paciente($_POST);
+            $resultado = $paciente->crear();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -47,8 +47,8 @@ class PacienteController{
 
     public static function modificarAPI(){
         try {
-            $producto = new Producto($_POST);
-            $resultado = $producto->actualizar();
+            $paciente = new Paciente($_POST);
+            $resultado = $paciente->actualizar();
 
             if($resultado['resultado'] == 1){
                 echo json_encode([
@@ -73,23 +73,41 @@ class PacienteController{
 
     public static function eliminarAPI(){
         try {
-            $producto_id = $_POST['producto_id'];
-            $producto = Producto::find($producto_id);
-            $producto->producto_situacion = 0;
-            $resultado = $producto->actualizar();
-
-            if($resultado['resultado'] == 1){
+          
+            if(isset($_POST['paciente_id'])){
+                $paciente_id = $_POST['paciente_id'];
+                $paciente = Paciente::find($paciente_id);
+                
+    
+                if(!$paciente){
+                    echo json_encode([
+                        'mensaje' => 'El paciente no existe en la base de datos',
+                        'codigo' => 0
+                    ]);
+                    return;
+                }
+    
+        
+                $paciente->paciente_situacion = 0;
+                $resultado = $paciente->actualizar();
+    
+                if($resultado['resultado'] == 1){
+                    echo json_encode([
+                        'mensaje' => 'Registro eliminado correctamente',
+                        'codigo' => 1
+                    ]);
+                }else{
+                    echo json_encode([
+                        'mensaje' => 'Ocurrió un error al eliminar el registro',
+                        'codigo' => 0
+                    ]);
+                }
+            } else {
                 echo json_encode([
-                    'mensaje' => 'Registro eliminado correctamente',
-                    'codigo' => 1
-                ]);
-            }else{
-                echo json_encode([
-                    'mensaje' => 'Ocurrió un error',
+                    'mensaje' => 'No se proporcionó el ID del paciente',
                     'codigo' => 0
                 ]);
             }
-            // echo json_encode($resultado);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
@@ -98,24 +116,30 @@ class PacienteController{
             ]);
         }
     }
+    
 
     public static function buscarAPI(){
         // $productos = Producto::all();
-        $producto_nombre = $_GET['producto_nombre'];
-        $producto_precio = $_GET['producto_precio'];
+        $paciente_nombre = $_GET['paciente_nombre'];
+        $paciente_dpi = $_GET['paciente_dpi'];
+        $paciente_telefono = $_GET['paciente_telefono'];
 
-        $sql = "SELECT * FROM productos where producto_situacion = 1 ";
-        if($producto_nombre != '') {
-            $sql.= " and producto_nombre like '%$producto_nombre%' ";
+
+        $sql = "SELECT * FROM pacientes where paciente_situacion = 1 ";
+        if($paciente_nombre != '') {
+            $sql.= " and paciente_nombre like '%$paciente_nombre%' ";
         }
-        if($producto_precio != '') {
-            $sql.= " and producto_precio = $producto_precio ";
+        if($paciente_dpi != '') {
+            $sql.= " and paciente_dpi = $paciente_dpi ";
+        }
+        if($paciente_telefono != '') {
+            $sql.= " and paciente_telefono = $paciente_telefono ";
         }
         try {
             
-            $productos = Producto::fetchArray($sql);
+            $pacientes = Paciente::fetchArray($sql);
     
-            echo json_encode($productos);
+            echo json_encode($pacientes);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
