@@ -11,15 +11,15 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="medico_especialidad">Especialidad del Médico</label>
-                <!-- Aquí se agregara el select de especialidades -->
-                <div id="especialidad_select"></div>
+                <!-- Aquí se agregará el select de especialidades -->
+                <div id="especialidad_select" data-especialidades='<?php echo json_encode($especialidades); ?>'></div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="medico_clinica">Asignar Clínica al Médico</label>
-                <!-- Aquí se agregara el select de clínicas -->
-                <div id="clinica_select"></div>
+                <!-- Aquí se agregará el select de clínicas -->
+                <div id="clinica_select" data-clinicas='<?php echo json_encode($clinicas); ?>'></div>
             </div>
         </div>
         <div class="row mb-3">
