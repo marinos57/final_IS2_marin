@@ -6,7 +6,7 @@ use Exception;
 use Model\Medico;
 use MVC\Router;
 
-class PacienteController{
+class MedicoController{
     public static function index(Router $router){
         $medicos = Medico::all();
         // $medicos2 = Producto::all();

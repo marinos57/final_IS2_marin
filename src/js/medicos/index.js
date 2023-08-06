@@ -141,7 +141,7 @@ const buscar = async () => {
             fragment.appendChild(tr);
         }
 
-        tablaPacientes.tBodies[0].appendChild(fragment)
+        tablaMedicos.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
     }
