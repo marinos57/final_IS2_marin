@@ -39,6 +39,9 @@
                             <li>
                                 <a class="dropdown-item nav-link text-white " href="/final_IS2_marin/clinicas"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Clinicas</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_marin/pacientes"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Pacientes</a>
+                            </li>
                         
                     
                         

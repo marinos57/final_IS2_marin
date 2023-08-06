@@ -6,6 +6,8 @@ use MVC\Router;
 use Controllers\AppController;
 use Controllers\EspecialidadController;
 use Controllers\ClinicaController;
+use Controllers\PacienteController;
+
 
 $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);

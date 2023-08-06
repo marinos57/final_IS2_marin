@@ -11,13 +11,13 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="paciente_dpi">DPI del Paciente</label>
-                <input type="text" name="paciente_dpi" id="paciente_nombre" class="form-control">
+                <input type="text" name="paciente_dpi" id="paciente_dpi" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="paciente_dpi">Telefono del Paciente</label>
-                <input type="text" name="paciente_dpi" id="paciente_nombre" class="form-control">
+                <input type="text" name="paciente_telefono" id="paciente_telefono" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
@@ -39,7 +39,7 @@
 <div class="row justify-content-center" id="divTabla">
     <div class="col-lg-8">
         <h2>Listado de Clinicas</h2>
-        <table class="table table-bordered table-hover" id="tablaClinicas">
+        <table class="table table-bordered table-hover" id="tablaPacientes">
             <thead class="table-dark">
                 <tr>
                     <th>NO. </th>

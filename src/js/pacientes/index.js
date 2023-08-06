@@ -97,6 +97,7 @@ const buscar = async () => {
                 const td3 = document.createElement('td')
                 const td4 = document.createElement('td')
                 const td5 = document.createElement('td')
+                const td6 = document.createElement('td')
                 const buttonModificar = document.createElement('button')
                 const buttonEliminar = document.createElement('button')
 

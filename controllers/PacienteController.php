@@ -12,8 +12,8 @@ class PacienteController{
         // $pacientes2 = Producto::all();
         // var_dump($pacientes);
         // exit;
-        $router->render('pacientes$pacientes/index', [
-            'pacientes$pacientes' => $pacientes,
+        $router->render('pacientes/index', [
+            'pacientes' => $pacientes,
             // 'productos2' => $productos2,
         ]);
 
