@@ -132,16 +132,16 @@ class CitaController{
     
 
     public static function buscarAPI(){
-        $cita_nombre = $_GET['cita_nombre'];
-        $sql = "SELECT citas.cita_id, citas.cita_nombre, 
+        $cita_paciente = $_GET['cita_paciente'];
+        $sql = "SELECT citas.cita_id, citas.cita_paciente, 
                pacientes.paciente_nombre, 
                medicos.medico_nombre 
         FROM citas 
         JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id 
         JOIN medicos ON citas.cita_medico = medicos.medico_id 
         WHERE citas.cita_situacion = 1";
-        if ($cita_nombre != '') {
-            $sql .= " AND m.medico_nombre LIKE '%$cita_nombre%' ";
+        if ($cita_paciente != '') {
+            $sql .= " AND m.medico_nombre LIKE '%$cita_paciente%' ";
         }
     
         try {

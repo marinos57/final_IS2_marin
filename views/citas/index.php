@@ -5,7 +5,7 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="cita_paciente">Nombre del Paciente</label>
-                <select name="cita_medico" id="cita_medico" class="form-control">
+                <select name="cita_paciente" id="cita_paciente" class="form-control">
                     <?php foreach ($pacientes as $paciente) : ?>
                          <option value="<?php echo $paciente->paciente_id; ?>"><?php echo $paciente->paciente_nombre; ?></option>
                     <?php endforeach; ?>
