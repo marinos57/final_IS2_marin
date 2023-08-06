@@ -10,19 +10,19 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="medico_especialidad">DPI del Paciente</label>
+                <label for="medico_especialidad">Especialidad del Medico</label>
                 <input type="text" name="medico_especialidad" id="medico_especialidad" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="paciente_dpi">Telefono del Paciente</label>
-                <input type="text" name="paciente_telefono" id="paciente_telefono" class="form-control">
+                <label for="medico_clinica">Asignar Clinica al Médico</label>
+                <input type="text" name="medico_clinica" id="medico_clinica" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <button type="submit" form="formularioPacientes" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
+                <button type="submit" form="formularioMedicos" id="btnGuardar" data-saludo= "hola" data-saludo2="hola2" class="btn btn-primary w-100">Guardar</button>
             </div>
             <div class="col">
                 <button type="button" id="btnModificar" class="btn btn-warning w-100">Modificar</button>
@@ -38,14 +38,14 @@
 </div>
 <div class="row justify-content-center" id="divTabla">
     <div class="col-lg-8">
-        <h2>Listado de Clinicas</h2>
-        <table class="table table-bordered table-hover" id="tablaPacientes">
+        <h2>Listado de Medicos</h2>
+        <table class="table table-bordered table-hover" id="tablaMedicos">
             <thead class="table-dark">
                 <tr>
                     <th>NO. </th>
                     <th>NOMBRE</th>
-                    <th>DPI</th>
-                    <th>TELEFONO</th>
+                    <th>Especialidad</th>
+                    <th>Clinica</th>
                     <th>MODIFICAR</th>
                     <th>ELIMINAR</th>
                 </tr>
