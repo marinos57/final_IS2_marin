@@ -7,6 +7,8 @@ use Controllers\AppController;
 use Controllers\EspecialidadController;
 use Controllers\ClinicaController;
 use Controllers\PacienteController;
+use Controllers\MedicoController;
+
 
 
 $router = new Router();
