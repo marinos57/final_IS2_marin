@@ -10,16 +10,16 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="medico_especialidad">Especialidad del Médico</label>
-                <!-- Aquí se agregará el select de especialidades -->
-                <div id="especialidad_select" data-especialidades='<?php echo json_encode($especialidades); ?>'></div>
+                    <label for="medico_especialidad">Especialidad del Médico</label>
+                    <!-- Aquí se agregará el select de especialidades -->
+                    <select name="medico_especialidad" id="especialidad_select" class="form-control"></select>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="medico_clinica">Asignar Clínica al Médico</label>
-                <!-- Aquí se agregará el select de clínicas -->
-                <div id="clinica_select" data-clinicas='<?php echo json_encode($clinicas); ?>'></div>
+                    <!-- Aquí se agregará el select de clínicas -->
+                <select name="medico_clinica" id="clinica_select" class="form-control"></select>
             </div>
         </div>
         <div class="row mb-3">
@@ -58,3 +58,4 @@
     </div>
 </div>
 <script src="<?= asset('./build/js/medicos/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/especialidades/index.js')  ?>"></script>
