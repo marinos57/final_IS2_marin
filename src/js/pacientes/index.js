@@ -27,7 +27,7 @@ const guardar = async (evento) => {
 
     const body = new FormData(formulario)
     body.delete('paciente_id')
-    const url = '/proyecto1/API/productos/guardar';
+    const url = '/final_IS2_marin/API/pacientes/guardar';
     const config = {
         method : 'POST',
         // body: otroNombre
@@ -71,9 +71,10 @@ const guardar = async (evento) => {
 
 const buscar = async () => {
 
-    let producto_nombre = formulario.producto_nombre.value;
-    let producto_precio = formulario.producto_precio.value;
-    const url = `/proyecto1/API/productos/buscar?producto_nombre=${producto_nombre}&producto_precio=${producto_precio}`;
+    let paciente_nombre = formulario.paciente_nombre.value;
+    let paciente_dpi = formulario.paciente_dpi.value;
+    let paciente_telefono = formulario.paciente_telefono.value;
+    const url = `/final_IS2_marin/API/pacientes/buscar?paciente_nombre=${paciente_nombre}&paciente_dpi=${paciente_dpi}&paciente_telefono=${paciente_telefono}`;
     const config = {
         method : 'GET'
     }
@@ -82,13 +83,13 @@ const buscar = async () => {
         const respuesta = await fetch(url, config)
         const data = await respuesta.json();
         
-        tablaProductos.tBodies[0].innerHTML = ''
+        tablaPacientes.tBodies[0].innerHTML = ''
         const fragment = document.createDocumentFragment();
         console.log(data);
         // return;
         if(data.length > 0){
             let contador = 1;
-            data.forEach( producto => {
+            data.forEach( paciente => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td')
@@ -105,22 +106,26 @@ const buscar = async () => {
                 buttonModificar.textContent = 'Modificar'
                 buttonEliminar.textContent = 'Eliminar'
 
-                buttonModificar.addEventListener('click', () => colocarDatos(producto))
-                buttonEliminar.addEventListener('click', () => eliminar(producto.producto_id))
+                buttonModificar.addEventListener('click', () => colocarDatos(paciente))
+                buttonEliminar.addEventListener('click', () => eliminar(paciente.paciente_id))
 
                 td1.innerText = contador;
-                td2.innerText = producto.producto_nombre
-                td3.innerText = producto.producto_precio
+                td2.innerText = paciente.paciente_nombre
+                td3.innerText = paciente.paciente_dpi
+                td4.innerText = paciente.paciente_telefono
+
                 
                 
                 // ESTRUCTURANDO DOM
-                td4.appendChild(buttonModificar)
-                td5.appendChild(buttonEliminar)
+                td5.appendChild(buttonModificar)
+                td6.appendChild(buttonEliminar)
                 tr.appendChild(td1)
                 tr.appendChild(td2)
                 tr.appendChild(td3)
                 tr.appendChild(td4)
                 tr.appendChild(td5)
+                tr.appendChild(td6)
+
 
                 fragment.appendChild(tr);
 
@@ -135,16 +140,17 @@ const buscar = async () => {
             fragment.appendChild(tr);
         }
 
-        tablaProductos.tBodies[0].appendChild(fragment)
+        tablaPacientes.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
     }
 }
 
 const colocarDatos = (datos) => {
-    formulario.producto_nombre.value = datos.producto_nombre
-    formulario.producto_precio.value = datos.producto_precio
-    formulario.producto_id.value = datos.producto_id
+    formulario.paciente_nombre.value = datos.paciente_nombre
+    formulario.paciente_dpi.value = datos.paciente_dpi
+    formulario.paciente_telefono.value = datos.paciente_telefono
+    formulario.paciente_id.value = datos.paciente_id
 
     btnGuardar.disabled = true
     btnGuardar.parentElement.style.display = 'none'
@@ -178,7 +184,7 @@ const modificar = async () => {
     }
 
     const body = new FormData(formulario)
-    const url = '/proyecto1/API/productos/modificar';
+    const url = '/final_IS2_marin/API/pacientes/modificar';
     const config = {
         method : 'POST',
         body
@@ -221,8 +227,8 @@ const modificar = async () => {
 const eliminar = async (id) => {
     if(await confirmacion('warning','¿Desea eliminar este registro?')){
         const body = new FormData()
-        body.append('producto_id', id)
-        const url = '/proyecto1/API/productos/eliminar';
+        body.append('paciente_id', id)
+        const url = '/final_IS2_marin/API/pacientes/eliminar';
         const config = {
             method : 'POST',
             body
