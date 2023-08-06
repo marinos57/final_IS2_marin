@@ -272,34 +272,34 @@ btnBuscar.addEventListener('click', buscar)
 btnCancelar.addEventListener('click', cancelarAccion)
 btnModificar.addEventListener('click', modificar)
 
-// // Obtener los elementos con los datos almacenados
-// const clinicaSelect = document.getElementById('clinica_select');
-// const especialidadSelect = document.getElementById('especialidad_select');
+// Obtener los elementos con los datos almacenados
+const clinicaSelect = document.getElementById('clinica_select');
+const especialidadSelect = document.getElementById('especialidad_select');
 
-// // Obtener los datos de clínicas y especialidades desde los atributos data-*
-// const clinicasData = JSON.parse(clinicaSelect.getAttribute('data-clinicas'));
-// const especialidadesData = JSON.parse(especialidadSelect.getAttribute('data-especialidades'));
+// Obtener los datos de clínicas y especialidades desde los atributos data-*
+const clinicasData = JSON.parse(clinicaSelect.getAttribute('data-clinicas'));
+const especialidadesData = JSON.parse(especialidadSelect.getAttribute('data-especialidades'));
 
-// // Función para generar los selects de clínicas y especialidades
-// function agregarSelects(clinicas, especialidades) {
-//   // Generar el select de clínicas
-//   let selectHTML = '<label for="medico_clinica">Asignar Clínica al Médico</label>';
-//   selectHTML += '<select class="form-control" id="medico_clinica" name="medico_clinica">';
-//   clinicas.forEach(clinica => {
-//     selectHTML += `<option value="${clinica.id}">${clinica.nombre}</option>`;
-//   });
-//   selectHTML += '</select>';
-//   clinicaSelect.innerHTML = selectHTML;
+// Función para generar los selects de clínicas y especialidades
+function agregarSelects(clinicas, especialidades) {
+  // Generar el select de clínicas
+  let selectHTML = '<label for="medico_clinica">Asignar Clínica al Médico</label>';
+  selectHTML += '<select class="form-control" id="medico_clinica" name="medico_clinica">';
+  clinicas.forEach(clinica => {
+    selectHTML += `<option value="${clinica.id}">${clinica.nombre}</option>`;
+  });
+  selectHTML += '</select>';
+  clinicaSelect.innerHTML = selectHTML;
 
-//   // Generar el select de especialidades
-//   selectHTML = '<label for="medico_especialidad">Especialidad del Médico</label>';
-//   selectHTML += '<select class="form-control" id="medico_especialidad" name="medico_especialidad">';
-//   especialidades.forEach(especialidad => {
-//     selectHTML += `<option value="${especialidad.id}">${especialidad.nombre}</option>`;
-//   });
-//   selectHTML += '</select>';
-//   especialidadSelect.innerHTML = selectHTML;
-// }
+  // Generar el select de especialidades
+  selectHTML = '<label for="medico_especialidad">Especialidad del Médico</label>';
+  selectHTML += '<select class="form-control" id="medico_especialidad" name="medico_especialidad">';
+  especialidades.forEach(especialidad => {
+    selectHTML += `<option value="${especialidad.id}">${especialidad.nombre}</option>`;
+  });
+  selectHTML += '</select>';
+  especialidadSelect.innerHTML = selectHTML;
+}
 
-// // Llamar la función con los datos pasados desde los atributos data-*
-// agregarSelects(clinicasData, especialidadesData);
+// Llamar la función con los datos pasados desde los atributos data-*
+agregarSelects(clinicasData, especialidadesData);
