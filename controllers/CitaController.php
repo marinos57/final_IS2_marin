@@ -132,22 +132,22 @@ class CitaController{
     
 
     public static function buscarAPI(){
-        $medico_nombre = $_GET['medico_nombre'];
-        $sql = "SELECT medicos.medico_id, medicos.medico_nombre, 
-               especialidades.especialidad_nombre, 
-               clinicas.clinica_nombre 
-        FROM medicos 
-        JOIN especialidades ON medicos.medico_especialidad = especialidades.especialidad_id 
-        JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id 
-        WHERE medicos.medico_situacion = 1";
-        if ($medico_nombre != '') {
-            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%' ";
+        $cita_nombre = $_GET['cita_nombre'];
+        $sql = "SELECT citas.cita_id, citas.cita_nombre, 
+               pacientes.paciente_nombre, 
+               medicos.medico_nombre 
+        FROM citas 
+        JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id 
+        JOIN medicos ON citas.cita_medico = medicos.medico_id 
+        WHERE citas.cita_situacion = 1";
+        if ($cita_nombre != '') {
+            $sql .= " AND m.medico_nombre LIKE '%$cita_nombre%' ";
         }
     
         try {
-            $medicos = Medico::fetchArray($sql);
+            $citas = Cita::fetchArray($sql);
     
-            echo json_encode($medicos);
+            echo json_encode($citas);
         } catch (Exception $e) {
             echo json_encode([
                 'detalle' => $e->getMessage(),
