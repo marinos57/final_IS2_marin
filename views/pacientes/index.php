@@ -16,7 +16,7 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="paciente_dpi">Telefono del Paciente</label>
+                <label for="paciente_telefono">Telefono del Paciente</label>
                 <input type="text" name="paciente_telefono" id="paciente_telefono" class="form-control">
             </div>
         </div>
