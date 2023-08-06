@@ -10,14 +10,16 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="medico_especialidad">Especialidad del Medico</label>
-                <input type="text" name="medico_especialidad" id="medico_especialidad" class="form-control">
+                <label for="medico_especialidad">Especialidad del Médico</label>
+                <!-- Aquí se agregara el select de especialidades -->
+                <div id="especialidad_select"></div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="medico_clinica">Asignar Clinica al Médico</label>
-                <input type="text" name="medico_clinica" id="medico_clinica" class="form-control">
+                <label for="medico_clinica">Asignar Clínica al Médico</label>
+                <!-- Aquí se agregara el select de clínicas -->
+                <div id="clinica_select"></div>
             </div>
         </div>
         <div class="row mb-3">
