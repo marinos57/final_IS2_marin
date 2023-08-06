@@ -1,17 +1,17 @@
 <h1 class="text-center">Formulario de ingreso de Pacientes</h1>
 <div class="row justify-content-center mb-5">
-    <form class="col-lg-8 border bg-light p-3" id="formularioPacientes">
-        <input type="hidden" name="paciente_id" id="paciente_id">
+    <form class="col-lg-8 border bg-light p-3" id="formularioMedicos">
+        <input type="hidden" name="medico_id" id="medico_id">
         <div class="row mb-3">
             <div class="col">
-                <label for="paciente_nombre">Nombre del Paciente</label>
-                <input type="text" name="paciente_nombre" id="paciente_nombre" class="form-control">
+                <label for="medico_nombre">Nombre del Medico</label>
+                <input type="text" name="medico_nombre" id="medico_nombre" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="paciente_dpi">DPI del Paciente</label>
-                <input type="text" name="paciente_dpi" id="paciente_dpi" class="form-control">
+                <label for="medico_especialidad">DPI del Paciente</label>
+                <input type="text" name="medico_especialidad" id="medico_especialidad" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
