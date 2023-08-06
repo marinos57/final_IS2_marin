@@ -35,5 +35,16 @@ $router->post('/API/pacientes/modificar', [PacienteController::class,'modificarA
 $router->post('/API/pacientes/eliminar', [PacienteController::class,'eliminarAPI'] );
 $router->get('/API/pacientes/buscar', [PacienteController::class,'buscarAPI'] );
 
+
+//medicos
+
+$router->get('/medicos', [MedicoController::class,'index'] );
+$router->post('/API/medicos/guardar', [MedicoController::class,'guardarAPI'] );
+$router->post('/API/medicos/modificar', [MedicoController::class,'modificarAPI'] );
+$router->post('/API/medicos/eliminar', [MedicoController::class,'eliminarAPI'] );
+$router->get('/API/medicos/buscar', [MedicoController::class,'buscarAPI'] );
+
+
+
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
