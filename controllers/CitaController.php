@@ -133,10 +133,10 @@ class CitaController{
     
 
     public static function buscarAPI() {
-        $cita_paciente = $_GET['cita_paciente'];
-        $cita_fecha = $_GET['cita_fecha'];
-        $cita_hora = $_GET['cita_hora'];
-        $cita_referencia = $_GET['cita_referencia'];
+        // $cita_paciente = $_GET['cita_paciente'];
+        // $cita_fecha = $_GET['cita_fecha'];
+        // $cita_hora = $_GET['cita_hora'];
+        // $cita_referencia = $_GET['cita_referencia'];
     
         // Realizar la consulta SQL con JOINs para obtener los datos de paciente, medico y cita
         $sql = "SELECT citas.cita_id, 
@@ -150,22 +150,23 @@ class CitaController{
                 JOIN medicos ON citas.cita_medico = medicos.medico_id 
                 WHERE citas.cita_situacion = 1";
     
-        if (!empty($cita_paciente)) {
-            $sql .= " AND pacientes.paciente_nombre LIKE '%$cita_paciente%'";
-        }
+        // if (!empty($cita_paciente)) {
+        //     $sql .= " AND pacientes.paciente_nombre LIKE '%$cita_paciente%'";
+        // }
     
-        if (!empty($cita_fecha)) {
-            $sql .= " AND citas.cita_fecha = '$cita_fecha'";
-        }
+        // if (!empty($cita_fecha)) {
+        //     $sql .= " AND citas.cita_fecha = '$cita_fecha'";
+        // }
     
-        if (!empty($cita_hora)) {
-            $sql .= " AND citas.cita_hora = '$cita_hora'";
-        }
+        // if (!empty($cita_hora)) {
+        //     $sql .= " AND citas.cita_hora = '$cita_hora'";
+        // }
     
-        if (!empty($cita_referencia)) {
-            $sql .= " AND citas.cita_referencia = '$cita_referencia'";
-        }
-    
+        // if (!empty($cita_referencia)) {
+        //     $sql .= " AND citas.cita_referencia = '$cita_referencia'";
+        // }
+        // var_dump($sql); 
+        // exit();   
         try {
             // Realizar la consulta SQL y obtener los resultados (asumiendo que ya tienes la conexión)
         
@@ -180,8 +181,7 @@ class CitaController{
             header('Content-Type: application/json');
     
             // Enviar la respuesta como un objeto JSON
-            var_dump($citas);
-            exit();
+           
             echo json_encode($citas);
         } catch (Exception $e) {
             // En caso de error, enviar un JSON con información del error

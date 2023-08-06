@@ -12,6 +12,9 @@ class PacienteController{
         // $pacientes2 = Producto::all();
         // var_dump($pacientes);
         // exit;
+
+        // $sql = "SELECT * FROM pacientes WHERE paciente_situacion = 1";
+        // $paciente = Paciente::fetchArray($sql);
         $router->render('pacientes/index', [
             'pacientes' => $pacientes,
             // 'productos2' => $productos2,

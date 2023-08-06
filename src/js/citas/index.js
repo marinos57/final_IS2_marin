@@ -78,10 +78,15 @@ const buscar = async () => {
     let cita_referencia = formulario.cita_referencia.value;
 
     const url = `/final_IS2_marin/API/citas/buscar?cita_paciente=${cita_paciente}&cita_medico=${cita_medico}&cita_fecha=${cita_fecha}&cita_hora=${cita_hora}&cita_referencia=${cita_referencia}`;
+    const headers = new Headers();
+    headers.append("X-Requested-With", "fetch");
     const config = {
-        method: 'GET',
-    };
+        method : 'GET',
+        headers,
+            
+    }
 
+    
     try {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
@@ -113,7 +118,11 @@ const buscar = async () => {
                 buttonEliminar.textContent = 'Eliminar';
 
                 buttonModificar.addEventListener('click', () => colocarDatos(cita));
-                buttonEliminar.addEventListener('click', () => eliminar(cita.cita_id));
+                buttonEliminar.addEventListener('click', () => {
+                    console.log(cita.cita_id);
+                    eliminar(cita.cita_id);
+                  });
+                  
 
                 td1.innerText = contador;
                 td2.innerText = cita.paciente_nombre;
@@ -132,6 +141,7 @@ const buscar = async () => {
                 tr.appendChild(td5);
                 tr.appendChild(td6);
                 tr.appendChild(td7);
+                tr.appendChild(td8);
 
                 fragment.appendChild(tr);
 

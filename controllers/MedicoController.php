@@ -12,6 +12,9 @@ class MedicoController{
     public static function index(Router $router) {
         $medicos = Medico::all();
        
+        $sql = "SELECT * FROM medicos WHERE medico_situacion = 1";
+        $medicos = Medico::fetchArray($sql);
+
          // Obtener solo las especialidades activas
              // Obtener solo las especialidades activas
              $especialidades = Especialidad::consultarSQL("SELECT * FROM especialidades WHERE especialidad_situacion = 1");
