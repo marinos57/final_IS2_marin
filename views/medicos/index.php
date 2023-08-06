@@ -1,4 +1,4 @@
-<h1 class="text-center">Formulario de ingreso de Pacientes</h1>
+<h1 class="text-center">Formulario de ingreso de Medicos</h1>
 <div class="row justify-content-center mb-5">
     <form class="col-lg-8 border bg-light p-3" id="formularioMedicos">
         <input type="hidden" name="medico_id" id="medico_id">
@@ -57,4 +57,4 @@
         </table>
     </div>
 </div>
-<script src="<?= asset('./build/js/pacientes/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/medicos/index.js')  ?>"></script>
