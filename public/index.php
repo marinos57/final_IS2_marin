@@ -11,7 +11,7 @@ use Controllers\PacienteController;
 
 $router = new Router();
 $router->setBaseURL('/' . $_ENV['APP_NAME']);
-
+//especialidades
 $router->get('/', [AppController::class,'index']);
 $router->get('/especialidades', [EspecialidadController::class,'index'] );
 $router->post('/API/especialidades/guardar', [EspecialidadController::class,'guardarAPI'] );
