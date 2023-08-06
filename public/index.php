@@ -1,14 +1,13 @@
 <?php 
 require_once __DIR__ . '/../includes/app.php';
 
-
 use MVC\Router;
 use Controllers\AppController;
 use Controllers\EspecialidadController;
 use Controllers\ClinicaController;
 use Controllers\PacienteController;
 use Controllers\MedicoController;
-
+use Controllers\CitaController;
 
 
 $router = new Router();
@@ -46,6 +45,14 @@ $router->post('/API/medicos/modificar', [MedicoController::class,'modificarAPI']
 $router->post('/API/medicos/eliminar', [MedicoController::class,'eliminarAPI'] );
 $router->get('/API/medicos/buscar', [MedicoController::class,'buscarAPI'] );
 
+
+//citas
+
+$router->get('/citas', [CitaController::class,'index'] );
+$router->post('/API/citas/guardar', [CitaController::class,'guardarAPI'] );
+$router->post('/API/citas/modificar', [CitaController::class,'modificarAPI'] );
+$router->post('/API/citas/eliminar', [CitaController::class,'eliminarAPI'] );
+$router->get('/API/citas/buscar', [CitaController::class,'buscarAPI'] );
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

@@ -10,6 +10,7 @@ module.exports = {
     'js/clinicas/index': './src/js/clinicas/index.js',
     'js/pacientes/index': './src/js/pacientes/index.js',
     'js/medicos/index': './src/js/medicos/index.js',
+    'js/citas/index': './src/js/citas/index.js',
 
 
 
