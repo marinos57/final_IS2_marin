@@ -87,9 +87,9 @@ const buscar = async () => {
         const fragment = document.createDocumentFragment();
         console.log(data);
         // return;
-        if(data.length > 0){
+        if (data.length > 0) {
             let contador = 1;
-            data.forEach( medico => {
+            data.forEach(medico => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
                 const td1 = document.createElement('td')
@@ -100,23 +100,21 @@ const buscar = async () => {
                 const td6 = document.createElement('td')
                 const buttonModificar = document.createElement('button')
                 const buttonEliminar = document.createElement('button')
-
+        
                 // CARACTERISTICAS A LOS ELEMENTOS
                 buttonModificar.classList.add('btn', 'btn-warning')
                 buttonEliminar.classList.add('btn', 'btn-danger')
                 buttonModificar.textContent = 'Modificar'
                 buttonEliminar.textContent = 'Eliminar'
-
+        
                 buttonModificar.addEventListener('click', () => colocarDatos(medico))
                 buttonEliminar.addEventListener('click', () => eliminar(medico.medico_id))
-
+        
                 td1.innerText = contador;
-                td2.innerText = medico.medico_nombre
-                td3.innerText = medico.medico_especialidad
-                td4.innerText = medico.medico_clinica
-
-                
-                
+                td2.innerText = medico.medico_nombre;
+                td3.innerText = medico.especialidad_nombre; // Modificamos aquí
+                td4.innerText = medico.clinica_nombre; // Modificamos aquí
+        
                 // ESTRUCTURANDO DOM
                 td5.appendChild(buttonModificar)
                 td6.appendChild(buttonEliminar)
@@ -126,13 +124,12 @@ const buscar = async () => {
                 tr.appendChild(td4)
                 tr.appendChild(td5)
                 tr.appendChild(td6)
-
-
+        
                 fragment.appendChild(tr);
-
+        
                 contador++;
             })
-        }else{
+        } else {
             const tr = document.createElement('tr');
             const td = document.createElement('td')
             td.innerText = 'No existen registros'
@@ -140,7 +137,7 @@ const buscar = async () => {
             tr.appendChild(td)
             fragment.appendChild(tr);
         }
-
+        
         tablaMedicos.tBodies[0].appendChild(fragment)
     } catch (error) {
         console.log(error);
@@ -268,76 +265,139 @@ const eliminar = async (id) => {
 }
 
 
-
-const buscarEspecialidades = async () => {
-    let especialidad_nombre = formulario.medico_especialidad.value;
-    const url = `/final_IS2_marin/API/especialidades/buscar?especialidad_nombre=${especialidad_nombre}`;
-    const config = {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json'
-        }
-    }
-
-    try {
-        const respuesta = await fetch(url, config);
-        const especialidades = await respuesta.json();
-
-        // Aquí se construye el select de especialidades
-        const selectEspecialidades = document.getElementById('especialidad_select');
-        selectEspecialidades.innerHTML = '';
-        especialidades.forEach(especialidad => {
-            const option = document.createElement('option');
-            option.value = especialidad.especialidad_id;
-            option.textContent = especialidad.especialidad_nombre;
-            selectEspecialidades.appendChild(option);
-        });
-
-     } catch (error) {
-        console.log('Error en la búsqueda de especialidades:', error);
-    }
-}
-
-const buscarClinicas = async () => {
-    let clinica_nombre = formulario.medico_clinica.value;
-    const url = `/final_IS2_marin/API/clinicas/buscar?clinica_nombre=${clinica_nombre}`;
-    const config = {
-        method: 'GET', 
-        headers: {
-            'Accept': 'application/json'
-        }
-    }
-
-    try {
-        const respuesta = await fetch(url, config);
-        const clinicas = await respuesta.json();
-
-        // Aquí se construye el select de clínicas
-        const selectClinicas = document.getElementById('clinica_select');
-        selectClinicas.innerHTML = '';
-        clinicas.forEach(clinica => {
-            const option = document.createElement('option');
-            option.value = clinica.clinica_id;
-            option.textContent = clinica.clinica_nombre;
-            selectClinicas.appendChild(option);
-        });
-
-    }   catch (error) {
-        console.log('Error en la búsqueda de medicos:', error);
-    }
-}
-
 buscar();
-
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
 btnCancelar.addEventListener('click', cancelarAccion)
 btnModificar.addEventListener('click', modificar)
-// Llamar a la función buscarEspecialidades cuando se ingrese un valor en el campo de especialidad
-formulario.medico_especialidad.addEventListener('input', buscarEspecialidades);
+// Función para obtener los nombres de especialidades y clínicas
+// const cargarSelects = async () => {
+//     try {
+//         // Obtener los nombres de especialidades
+//         const respuestaEspecialidades = await fetch('/final_IS2_marin/API/especialidades');
+//         const especialidades = await respuestaEspecialidades.json();
+//         const selectEspecialidad = document.getElementById('medico_especialidad');
+//         selectEspecialidad.innerHTML = '';
+//         especialidades.forEach((especialidad) => {
+//             const option = document.createElement('option');
+//             option.value = especialidad.especialidad_id;
+//             option.textContent = especialidad.especialidad_nombre;
+//             selectEspecialidad.appendChild(option);
+//         });
 
-// Llamar a la función buscarClinicas cuando se ingrese un valor en el campo de clínica
-formulario.medico_clinica.addEventListener('input', buscarClinicas);
+//         // Obtener los nombres de clínicas
+//         const respuestaClinicas = await fetch('/final_IS2_marin/API/clinicas');
+//         const clinicas = await respuestaClinicas.json();
+//         const selectClinica = document.getElementById('medico_clinica');
+//         selectClinica.innerHTML = '';
+//         clinicas.forEach((clinica) => {
+//             const option = document.createElement('option');
+//             option.value = clinica.clinica_id;
+//             option.textContent = clinica.clinica_nombre;
+//             selectClinica.appendChild(option);
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// Llamar a la función de buscar al cargar la página
+//Función para obtener los nombres de especialidades y clínicas
+// const cargarSelects = async () => {
+//     try {
+//         // Obtener los nombres de especialidades
+//         const respuestaEspecialidades = await fetch('/final_IS2_marin/API/especialidades');
+//         const especialidades = await respuestaEspecialidades.json();
+//         const selectEspecialidad = document.getElementById('medico_especialidad');
+//         selectEspecialidad.innerHTML = '';
+//         especialidades.forEach((especialidad) => {
+//             const option = document.createElement('option');
+//             option.value = especialidad.especialidad_id;
+//             option.textContent = especialidad.especialidad_nombre;
+//             selectEspecialidad.appendChild(option);
+//         });
+
+//         // Obtener los nombres de clínicas
+//         const respuestaClinicas = await fetch('/final_IS2_marin/API/clinicas');
+//         const clinicas = await respuestaClinicas.json();
+//         const selectClinica = document.getElementById('medico_clinica');
+//         selectClinica.innerHTML = '';
+//         clinicas.forEach((clinica) => {
+//             const option = document.createElement('option');
+//             option.value = clinica.clinica_id;
+//             option.textContent = clinica.clinica_nombre;
+//             selectClinica.appendChild(option);
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+// const buscarEspecialidades = async () => {
+//     let especialidad_nombre = formulario.medico_especialidad.value;
+//     const url = `/final_IS2_marin/API/especialidades/buscar?especialidad_nombre=${especialidad_nombre}`;
+//     const config = {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json'
+//         }
+//     }
+
+//     try {
+//         const respuesta = await fetch(url, config);
+//         const especialidades = await respuesta.json();
+
+//         // Aquí se construye el select de especialidades
+//         const selectEspecialidades = document.getElementById('especialidad_select');
+//         selectEspecialidades.innerHTML = '';
+//         especialidades.forEach(especialidad => {
+//             const option = document.createElement('option');
+//             option.value = especialidad.especialidad_id;
+//             option.textContent = especialidad.especialidad_nombre;
+//             selectEspecialidades.appendChild(option);
+//         });
+
+//      } catch (error) {
+//         console.log('Error en la búsqueda de especialidades:', error);
+//     }
+// }
+
+// const buscarClinicas = async () => {
+//     let clinica_nombre = formulario.medico_clinica.value;
+//     const url = `/final_IS2_marin/API/clinicas/buscar?clinica_nombre=${clinica_nombre}`;
+//     const config = {
+//         method: 'GET', 
+//         headers: {
+//             'Accept': 'application/json'
+//         }
+//     }
+
+//     try {
+//         const respuesta = await fetch(url, config);
+//         const clinicas = await respuesta.json();
+
+//         // Aquí se construye el select de clínicas
+//         const selectClinicas = document.getElementById('clinica_select');
+//         selectClinicas.innerHTML = '';
+//         clinicas.forEach(clinica => {
+//             const option = document.createElement('option');
+//             option.value = clinica.clinica_id;
+//             option.textContent = clinica.clinica_nombre;
+//             selectClinicas.appendChild(option);
+//         });
+
+//     }   catch (error) {
+//         console.log('Error en la búsqueda de medicos:', error);
+//     }
+// }
+
+// buscar();
+
+
+// // Llamar a la función buscarEspecialidades cuando se ingrese un valor en el campo de especialidad
+// formulario.medico_especialidad.addEventListener('input', buscarEspecialidades);
+
+// // Llamar a la función buscarClinicas cuando se ingrese un valor en el campo de clínica
+// formulario.medico_clinica.addEventListener('input', buscarClinicas);
 
 
 

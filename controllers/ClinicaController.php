@@ -8,14 +8,25 @@ use MVC\Router;
 
 class ClinicaController{
     public static function index(Router $router){
-        $clinicas = Clinica::all();
-       
-        $router->render('clinicas/index', [
-            'clinicas' => $clinicas,
-   
-        ]);
-
+          // Obtener solo las clínicas activas
+          $sql = "SELECT * FROM clinicas WHERE clinica_situacion = 1";
+          $clinicas = Clinica::fetchArray($sql);
+  
+          $router->render('clinicas/index', [
+              'clinicas' => $clinicas,
+          ]);
     }
+
+    // public static function obtenerClinicasActivas() {
+    //     $sql = "SELECT * FROM clinicas WHERE clinica_situacion = 1";
+    //     try {
+    //         $clinicas = Clinica::fetchArray($sql);
+    //         return $clinicas;
+    //     } catch (Exception $e) {
+    //         // Manejar el error aquí si es necesario
+    //         return [];
+    //     }
+    // }
 
     public static function guardarAPI(){
         try {

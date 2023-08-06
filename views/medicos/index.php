@@ -10,16 +10,22 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                    <label for="medico_especialidad">Especialidad del Médico</label>
-                    <!-- Aquí se agregará el select de especialidades -->
-                    <select name="medico_especialidad" id="especialidad_select" class="form-control"></select>
+                 <label for="medico_especialidad">Especialidad del Médico</label>
+                    <select name="medico_especialidad" id="medico_especialidad" class="form-control">
+                        <?php foreach ($especialidades as $especialidad) : ?>
+                            <option value="<?php echo $especialidad->especialidad_id; ?>"><?php echo $especialidad->especialidad_nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="medico_clinica">Asignar Clínica al Médico</label>
-                    <!-- Aquí se agregará el select de clínicas -->
-                <select name="medico_clinica" id="clinica_select" class="form-control"></select>
+                <label for="medico_clinica">Clínica del Médico</label>
+                <select name="medico_clinica" id="medico_clinica" class="form-control">
+                    <?php foreach ($clinicas as $clinica) : ?>
+                        <option value="<?php echo $clinica->clinica_id; ?>"><?php echo $clinica->clinica_nombre; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
         <div class="row mb-3">
@@ -58,4 +64,3 @@
     </div>
 </div>
 <script src="<?= asset('./build/js/medicos/index.js')  ?>"></script>
-<script src="<?= asset('./build/js/especialidades/index.js')  ?>"></script>

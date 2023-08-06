@@ -20,6 +20,6 @@ class Medico extends ActiveRecord{
         $this->medico_nombre = $args['medico_nombre'] ?? '';
         $this->medico_especialidad = $args['medico_especialidad'] ?? '';
         $this->medico_clinica = $args['medico_clinica'] ?? '';
-        $this->medico_situacion = $args['medico_situacion'] ?? '';
+        $this->medico_situacion = $args['medico_situacion'] ?? '1';
     }
 }

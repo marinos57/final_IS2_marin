@@ -9,13 +9,26 @@ use MVC\Router;
 class EspecialidadController{
     public static function index(Router $router){
         $especialidades = Especialidad::all();
-       
+        // Obtener solo las especialidades activas
+        $sql = "SELECT * FROM especialidades WHERE especialidad_situacion = 1";
+        $especialidades = Especialidad::fetchArray($sql);
+
         $router->render('especialidades/index', [
             'especialidades' => $especialidades,
-   
         ]);
 
     }
+
+    // public static function obtenerEspecialidadesActivas() {
+    //     $sql = "SELECT * FROM especialidades WHERE especialidad_situacion = 1";
+    //     try {
+    //         $especialidades = Especialidad::fetchArray($sql);
+    //         return $especialidades;
+    //     } catch (Exception $e) {
+    //         // Manejar el error aquí si es necesario
+    //         return [];
+    //     }
+    // }
 
     public static function guardarAPI(){
         try {

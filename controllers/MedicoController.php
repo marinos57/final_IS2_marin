@@ -4,20 +4,33 @@ namespace Controllers;
 
 use Exception;
 use Model\Medico;
+use Model\Clinica;
+use Model\Especialidad;
 use MVC\Router;
 
 class MedicoController{
-    public static function index(Router $router){
+    public static function index(Router $router) {
         $medicos = Medico::all();
-        // $medicos2 = Producto::all();
-        // var_dump($medicos);
-        // exit;
-        $router->render('medicos/index', [
-            'medicos' => $medicos,
-            // 'productos2' => $productos2,
-        ]);
+       
+         // Obtener solo las especialidades activas
+             // Obtener solo las especialidades activas
+             $especialidades = Especialidad::consultarSQL("SELECT * FROM especialidades WHERE especialidad_situacion = 1");
 
+             // Obtener solo las clínicas activas
+             $clinicas = Clinica::consultarSQL("SELECT * FROM clinicas WHERE clinica_situacion = 1");
+     
+ 
+        //  var_dump($especialidades);
+        //  var_dump($clinicas);
+
+        //  exit();
+         $router->render('medicos/index', [
+             'medicos' => $medicos,
+             'especialidades' => $especialidades,
+             'clinicas' => $clinicas
+         ]);
     }
+
 
     public static function guardarAPI(){
         try {
@@ -119,24 +132,19 @@ class MedicoController{
     
 
     public static function buscarAPI(){
-        // $productos = Producto::all();
         $medico_nombre = $_GET['medico_nombre'];
-        $medico_especialidad = $_GET['medico_especialidad'];
-        $medico_clinica = $_GET['medico_clinica'];
-
-
-        $sql = "SELECT * FROM medicos where medico_situacion = 1 ";
-        if($medico_nombre != '') {
-            $sql.= " and medico_nombre like '%$medico_nombre%' ";
+        $sql = "SELECT medicos.medico_id, medicos.medico_nombre, 
+               especialidades.especialidad_nombre, 
+               clinicas.clinica_nombre 
+        FROM medicos 
+        JOIN especialidades ON medicos.medico_especialidad = especialidades.especialidad_id 
+        JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id 
+        WHERE medicos.medico_situacion = 1";
+        if ($medico_nombre != '') {
+            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%' ";
         }
-        if($medico_especialidad != '') {
-            $sql.= " and medico_especialidad = $medico_especialidad ";
-        }
-        if($medico_clinica != '') {
-            $sql.= " and medico_clinica = $medico_clinica ";
-        }
+    
         try {
-            
             $medicos = Medico::fetchArray($sql);
     
             echo json_encode($medicos);
