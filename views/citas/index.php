@@ -25,13 +25,13 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="cita_fecha">Fecha de la cita</label>
-                <input type="text" name="cita_fecha" id="cita_fecha" class="form-control">
+                <input type="date" name="cita_fecha" id="cita_fecha" pattern="\d{4}-\d{2}-\d{2}" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="cita_hora">Hora de la cita</label>
-                <input type="text" name="cita_hora" id="cita_hora" class="form-control">
+                <input type="time" name="cita_hora" id="cita_hora" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
@@ -77,4 +77,4 @@
         </table>
     </div>
 </div>
-<script src="<?= asset('./build/js/pacientes/index.js')  ?>"></script>
+<script src="<?= asset('./build/js/citas/index.js')  ?>"></script>

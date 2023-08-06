@@ -36,6 +36,7 @@ const guardar = async (evento) => {
 
     try {
         const respuesta = await fetch(url, config)
+        console.log(respuesta.status)
         const data = await respuesta.json();
 
         console.log(data);
@@ -70,88 +71,96 @@ const guardar = async (evento) => {
 }
 
 const buscar = async () => {
-
     let cita_paciente = formulario.cita_paciente.value;
     let cita_medico = formulario.cita_medico.value;
     let cita_fecha = formulario.cita_fecha.value;
     let cita_hora = formulario.cita_hora.value;
     let cita_referencia = formulario.cita_referencia.value;
 
-    const url = `/final_IS2_marin/API/citass/buscar?cita_paciente=${cita_paciente}&cita_medico=${cita_medico}&cita_fecha=${cita_fecha}&cita_hora=${cita_hora}&cita_referencia=${cita_referencia}`;
+    const url = `/final_IS2_marin/API/citas/buscar?cita_paciente=${cita_paciente}&cita_medico=${cita_medico}&cita_fecha=${cita_fecha}&cita_hora=${cita_hora}&cita_referencia=${cita_referencia}`;
     const config = {
-        method : 'GET'
-    }
+        method: 'GET',
+    };
 
     try {
-        const respuesta = await fetch(url, config)
+        const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-        
-        tablaMedicos.tBodies[0].innerHTML = ''
-        const fragment = document.createDocumentFragment();
         console.log(data);
-        // return;
+
+        tablaCitas.tBodies[0].innerHTML = '';
+        const fragment = document.createDocumentFragment();
+
         if (data.length > 0) {
             let contador = 1;
-            data.forEach(medico => {
+            data.forEach(cita => {
                 // CREAMOS ELEMENTOS
                 const tr = document.createElement('tr');
-                const td1 = document.createElement('td')
-                const td2 = document.createElement('td')
-                const td3 = document.createElement('td')
-                const td4 = document.createElement('td')
-                const td5 = document.createElement('td')
-                const td6 = document.createElement('td')
-                const buttonModificar = document.createElement('button')
-                const buttonEliminar = document.createElement('button')
-        
+                const td1 = document.createElement('td');
+                const td2 = document.createElement('td');
+                const td3 = document.createElement('td');
+                const td4 = document.createElement('td');
+                const td5 = document.createElement('td');
+                const td6 = document.createElement('td');
+                const td7 = document.createElement('td');
+                const td8 = document.createElement('td');
+                const buttonModificar = document.createElement('button');
+                const buttonEliminar = document.createElement('button');
+
                 // CARACTERISTICAS A LOS ELEMENTOS
-                buttonModificar.classList.add('btn', 'btn-warning')
-                buttonEliminar.classList.add('btn', 'btn-danger')
-                buttonModificar.textContent = 'Modificar'
-                buttonEliminar.textContent = 'Eliminar'
-        
-                buttonModificar.addEventListener('click', () => colocarDatos(medico))
-                buttonEliminar.addEventListener('click', () => eliminar(medico.medico_id))
-        
+                buttonModificar.classList.add('btn', 'btn-warning');
+                buttonEliminar.classList.add('btn', 'btn-danger');
+                buttonModificar.textContent = 'Modificar';
+                buttonEliminar.textContent = 'Eliminar';
+
+                buttonModificar.addEventListener('click', () => colocarDatos(cita));
+                buttonEliminar.addEventListener('click', () => eliminar(cita.cita_id));
+
                 td1.innerText = contador;
-                td2.innerText = medico.medico_nombre;
-                td3.innerText = medico.especialidad_nombre; // Modificamos aquí
-                td4.innerText = medico.clinica_nombre; // Modificamos aquí
-        
+                td2.innerText = cita.paciente_nombre;
+                td3.innerText = cita.medico_nombre; // Nombre del médico
+                td4.innerText = cita.cita_fecha;
+                td5.innerText = cita.cita_hora;
+                td6.innerText = cita.cita_referencia;
+
                 // ESTRUCTURANDO DOM
-                td5.appendChild(buttonModificar)
-                td6.appendChild(buttonEliminar)
-                tr.appendChild(td1)
-                tr.appendChild(td2)
-                tr.appendChild(td3)
-                tr.appendChild(td4)
-                tr.appendChild(td5)
-                tr.appendChild(td6)
-        
+                td7.appendChild(buttonModificar);
+                td8.appendChild(buttonEliminar);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td7);
+
                 fragment.appendChild(tr);
-        
+
                 contador++;
-            })
+            });
         } else {
             const tr = document.createElement('tr');
-            const td = document.createElement('td')
-            td.innerText = 'No existen registros'
-            td.colSpan = 5
-            tr.appendChild(td)
+            const td = document.createElement('td');
+            td.innerText = 'No existen registros';
+            td.colSpan = 8;
+            tr.appendChild(td);
             fragment.appendChild(tr);
         }
-        
-        tablaMedicos.tBodies[0].appendChild(fragment)
+
+        tablaCitas.tBodies[0].appendChild(fragment);
     } catch (error) {
         console.log(error);
     }
-}
+};
+
 
 const colocarDatos = (datos) => {
-    formulario.medico_nombre.value = datos.medico_nombre
-    formulario.medico_especialidad.value = datos.medico_especialidad
-    formulario.medico_clinica.value = datos.medico_clinica
-    formulario.medico_id.value = datos.medico_id
+    formulario.cita_paciente.value = datos.cita_paciente
+    formulario.cita_medico.value = datos.cita_medico
+    formulario.cita_fecha.value = datos.cita_fecha
+    formulario.cita_hora.value = datos.cita_hora
+    formulario.cita_referencia.value = datos.cita_referencia
+    formulario.cita_id.value = datos.cita_id
+
 
     btnGuardar.disabled = true
     btnGuardar.parentElement.style.display = 'none'
@@ -185,7 +194,7 @@ const modificar = async () => {
     }
 
     const body = new FormData(formulario)
-    const url = '/final_IS2_marin/API/medicos/modificar';
+    const url = '/final_IS2_marin/API/citas/modificar';
     const config = {
         method : 'POST',
         body
@@ -228,8 +237,8 @@ const modificar = async () => {
 const eliminar = async (id) => {
     if(await confirmacion('warning','¿Desea eliminar este registro?')){
         const body = new FormData()
-        body.append('medico_id', id)
-        const url = '/final_IS2_marin/API/medicos/eliminar';
+        body.append('cita_id', id)
+        const url = '/final_IS2_marin/API/citas/eliminar';
         const config = {
             method : 'POST',
             body
