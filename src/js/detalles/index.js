@@ -8,65 +8,75 @@ const btnBuscar = document.getElementById('btnBuscar');
 const divTabla = document.getElementById('divTabla');
 
 const buscar = async () => {
-    // ... código de búsqueda y obtención de datos ...
+    let cita_paciente = formulario.cita_paciente.value;
+    let cita_medico = formulario.cita_medico.value;
+    let cita_fecha = formulario.cita_fecha.value;
+    let cita_hora = formulario.cita_hora.value;
+    let cita_referencia = formulario.cita_referencia.value;
 
-    // Limpiamos la tabla antes de agregar nuevos datos
-    tablaCitas.tBodies[0].innerHTML = '';
+    const url = `/final_IS2_marin/API/citas/buscar`;
+    const headers = new Headers();
+    headers.append("X-Requested-With", "fetch");
+    const config = {
+        method : 'GET',
+        headers,
+            
+    }
 
-    if (data.length > 0) {
-        let clinicaActual = '';
-        let medicoActual = '';
+    try {
+        const respuesta = await fetch(url, config);
+        const data = await respuesta.json();
+        console.log(data);
 
-        data.forEach(cita => {
-            // CREAMOS ELEMENTOS
+        tablaCitas.tBodies[0].innerHTML = '';
+        const fragment = document.createDocumentFragment();
+
+        if (data.length > 0) {
+            let contador = 1;
+            data.forEach(cita => {
+                // CREAMOS ELEMENTOS
+                const tr = document.createElement('tr');
+                const td1 = document.createElement('td');
+                const td2 = document.createElement('td');
+                const td3 = document.createElement('td');
+                const td4 = document.createElement('td');
+                const td5 = document.createElement('td');
+                const td6 = document.createElement('td');
+             
+                td1.innerText = contador;
+                td2.innerText = cita.paciente_nombre;
+                td3.innerText = cita.medico_nombre; // Nombre del médico
+                td4.innerText = cita.cita_fecha;
+                td5.innerText = cita.cita_hora;
+                td6.innerText = cita.cita_referencia;
+
+                // ESTRUCTURANDO DOM
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+                tr.appendChild(td6);
+                tr.appendChild(td7);
+                tr.appendChild(td8);
+
+                fragment.appendChild(tr);
+
+                contador++;
+            });
+
+        } else {
             const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.innerText = 'No existen registros';
+            td.colSpan = 8;
+            tr.appendChild(td);
+            fragment.appendChild(tr);
+        }
 
-            if (clinicaActual !== cita.clinica_nombre || medicoActual !== cita.medico_nombre) {
-                // Fila para el nombre de la clínica y el médico
-                const tdClinica = document.createElement('td');
-                tdClinica.innerText = cita.clinica_nombre;
-                tdClinica.colSpan = 6;
-                tr.appendChild(tdClinica);
-
-                const trMedico = document.createElement('tr');
-                const tdMedico = document.createElement('td');
-                tdMedico.innerText = 'Doctor ' + cita.medico_nombre;
-                tdMedico.colSpan = 6;
-                trMedico.appendChild(tdMedico);
-                tablaCitas.tBodies[0].appendChild(trMedico);
-
-                clinicaActual = cita.clinica_nombre;
-                medicoActual = cita.medico_nombre;
-            }
-
-            const td1 = document.createElement('td');
-            const td2 = document.createElement('td');
-            const td3 = document.createElement('td');
-            const td4 = document.createElement('td');
-            const td5 = document.createElement('td');
-            const td6 = document.createElement('td');
-
-            td1.innerText = contador;
-            td2.innerText = cita.paciente_nombre;
-            td3.innerText = cita.paciente_dpi;
-            td4.innerText = cita.paciente_telefono;
-            td5.innerText = cita.cita_hora;
-            td6.innerText = cita.cita_referencia;
-
-            // ESTRUCTURANDO DOM
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            tr.appendChild(td5);
-            tr.appendChild(td6);
-
-            tablaCitas.tBodies[0].appendChild(tr);
-
-            contador++;
-        });
-    } else {
-        // ... código en caso de no encontrar citas ...
+        tablaCitas.tBodies[0].appendChild(fragment);
+    } catch (error) {
+        console.log(error);
     }
 };
 
@@ -88,3 +98,4 @@ buscar();
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
 btnCancelar.addEventListener('click', cancelarAccion)
+btnModificar.addEventListener('click', modificar)
