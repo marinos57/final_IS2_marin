@@ -48,6 +48,9 @@
                             <li>
                                 <a class="dropdown-item nav-link text-white " href="/final_IS2_marin/citas"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Citas</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item nav-link text-white " href="/final_IS2_marin/detalles"><i class="ms-lg-0 ms-2 bi bi-plus-circle me-2"></i>Citas</a>
+                            </li>
                         
                     
                         
