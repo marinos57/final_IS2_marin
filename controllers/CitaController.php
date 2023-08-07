@@ -192,5 +192,5 @@ class CitaController{
                 'codigo' => 0
             ]);
         }
-    }
+    }  
 }
