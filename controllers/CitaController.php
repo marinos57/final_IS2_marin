@@ -163,13 +163,13 @@ class CitaController{
             $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
         }
         
-        if (!empty($cita_paciente)) {
-            $sql .= " AND c.cita_paciente = '$cita_paciente'";
-        }
+        // if (!empty($cita_paciente)) {
+        //     $sql .= " AND c.cita_paciente = '$cita_paciente'";
+        // }
     
-        if (!empty($cita_medico)) {
-            $sql .= " AND c.cita_medico = '$cita_medico'";
-        }
+        // if (!empty($cita_medico)) {
+        //     $sql .= " AND c.cita_medico = '$cita_medico'";
+        // }
     
         if (!empty($cita_fecha)) {
             $sql .= " AND c.cita_fecha = '$cita_fecha'";
