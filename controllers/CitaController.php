@@ -133,8 +133,8 @@ class CitaController{
     public static function buscarAPI() {
         $paciente_nombre = $_GET['paciente_nombre'] ?? '';
         $medico_nombre = $_GET['medico_nombre'] ?? '';
-        // $cita_paciente = $_GET['cita_paciente'] ?? '';
-        // $cita_medico = $_GET['cita_medico'] ?? '';
+        $cita_paciente = $_GET['cita_paciente'] ?? '';
+        $cita_medico = $_GET['cita_medico'] ?? '';
         $cita_fecha = $_GET['cita_fecha'] ?? '';
         $cita_hora = $_GET['cita_hora'] ?? '';
         $cita_referencia = $_GET['cita_referencia'] ?? '';
@@ -142,6 +142,8 @@ class CitaController{
         $sql = "SELECT
             p.paciente_nombre,
             m.medico_nombre,
+            c.cita_paciente,
+            c.cita_medico,
             c.cita_fecha,
             c.cita_hora,
             c.cita_referencia,
@@ -153,27 +155,27 @@ class CitaController{
         WHERE
             c.cita_situacion = 1";
     
-        // if (!empty($paciente_nombre)) {
-        //     $sql .= " AND p.paciente_nombre LIKE '%$paciente_nombre%'";
-        // }
-    
-        // if (!empty($medico_nombre)) {
-        //     $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
-        // }
         if (!empty($paciente_nombre)) {
-            $sql .= " AND LOWER(p.paciente_nombre) LIKE '%" . strtolower($paciente_nombre) . "%'";
+            $sql .= " AND p.paciente_nombre LIKE '%$paciente_nombre%'";
         }
-        
-        if (!empty($medico_nombre)) {
-            $sql .= " AND LOWER(m.medico_nombre) LIKE '%" . strtolower($medico_nombre) . "%'";
-        }
-        // if (!empty($cita_paciente)) {
-        //     $sql .= " AND c.cita_paciente = '$cita_paciente'";
-        // }
     
-        // if (!empty($cita_medico)) {
-        //     $sql .= " AND c.cita_medico = '$cita_medico'";
+        if (!empty($medico_nombre)) {
+            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
+        }
+        // if (!empty($paciente_nombre)) {
+        //     $sql .= " AND LOWER(p.paciente_nombre) LIKE '%" . strtolower($paciente_nombre) . "%'";
         // }
+        
+        // if (!empty($medico_nombre)) {
+        //     $sql .= " AND LOWER(m.medico_nombre) LIKE '%" . strtolower($medico_nombre) . "%'";
+        // }
+        if (!empty($cita_paciente)) {
+            $sql .= " AND c.cita_paciente = '$cita_paciente'";
+        }
+    
+        if (!empty($cita_medico)) {
+            $sql .= " AND c.cita_medico = '$cita_medico'";
+        }
     
         if (!empty($cita_fecha)) {
             $sql .= " AND c.cita_fecha = '$cita_fecha'";
