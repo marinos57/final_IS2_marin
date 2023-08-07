@@ -130,9 +130,9 @@ class CitaController{
             ]);
         }
     }
-    
     public static function buscarAPI() {
-        $cita_paciente = $_GET['cita_paciente'] ?? '';
+        $paciente_nombre = $_GET['paciente_nombre'] ?? '';
+        $medico_nombre = $_GET['medico_nombre'] ?? '';
         $cita_fecha = $_GET['cita_fecha'] ?? '';
         $cita_hora = $_GET['cita_hora'] ?? '';
         $cita_referencia = $_GET['cita_referencia'] ?? '';
@@ -151,8 +151,12 @@ class CitaController{
         WHERE
             c.cita_situacion = 1";
     
-        if (!empty($cita_paciente)) {
-            $sql .= " AND p.paciente_nombre LIKE '%$cita_paciente%'";
+        if (!empty($paciente_nombre)) {
+            $sql .= " AND p.paciente_nombre LIKE '%$paciente_nombre%'";
+        }
+    
+        if (!empty($medico_nombre)) {
+            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
         }
     
         if (!empty($cita_fecha)) {
@@ -185,5 +189,6 @@ class CitaController{
                 'codigo' => 0
             ]);
         }
-    }
+    }    
+    
  }    
