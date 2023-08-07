@@ -135,16 +135,11 @@ class MedicoController{
     
 
     public static function buscarAPI(){
+        
         $medico_nombre = $_GET['medico_nombre'];
-        $sql = "SELECT medicos.medico_id, medicos.medico_nombre, 
-               especialidades.especialidad_nombre, 
-               clinicas.clinica_nombre 
-        FROM medicos 
-        JOIN especialidades ON medicos.medico_especialidad = especialidades.especialidad_id 
-        JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id 
-        WHERE medicos.medico_situacion = 1";
+        $sql = " SELECT * from medicos inner join especialidades on medico_especialidad = especialidad_id inner join clinicas on clinica_id = medico_clinica where medico_situacion = 1";
         if ($medico_nombre != '') {
-            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%' ";
+            $sql .= " AND medico_nombre LIKE '%$medico_nombre%' ";
         }
     
         try {

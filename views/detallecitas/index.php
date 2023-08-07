@@ -1,13 +1,22 @@
+        <div class="container justify-content-center">
+            <div class="row">
+                <div class="col text-center mt-5">
+                    <a href="/final_IS2_marin/" class="btn btn-primary">Regresar</a>
+                </div>
+            </div>
+        </div>
 <?php foreach ($detallesCitas as $fecha => $detallesPorFecha) : ?>
     <?php foreach ($detallesPorFecha as $clinica => $detallesPorClinica) : ?>
         <?php foreach ($detallesPorClinica as $medico => $detallesPorMedico) : ?>
+   
+        <div class="container justify-content-center mt-5">
             <table class="table table-bordered table-hover">
-                <thead class="table-dark">
+                <thead class="table-bordered table-hover">
                     <tr>
-                        <th colspan="6">Citas para el día de hoy (<?= $fecha ?>)</th>
+                        <th class="text-center" colspan="6">Citas en esta fecha: (<?= $fecha ?>)</th>
                     </tr>
                     <tr>
-                        <th colspan="6">Clínica: <?= $clinica ?> - Doctor <?= $medico ?> (<?= $detallesPorMedico[0]['especialidad_nombre'] ?>)</th>
+                        <th class="text-center" colspan="6">Clínica: <?= $clinica ?> - Doctor <?= $medico ?> (<?= $detallesPorMedico[0]['especialidad_nombre'] ?>)</th>
                     </tr>
                     <tr>
                         <th>No.</th>
@@ -31,6 +40,14 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+        </div>
         <?php endforeach ?>
     <?php endforeach ?>
 <?php endforeach ?>
+        <div class="container justify-content-center">
+            <div class="row">
+                <div class="col text-center mt-5">
+                    <a href="/final_IS2_marin/" class="btn btn-primary">Regresar</a>
+                </div>
+            </div>
+        </div>

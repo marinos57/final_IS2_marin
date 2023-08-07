@@ -6,6 +6,7 @@
             <div class="col">
                 <label for="cita_paciente">Nombre del Paciente</label>
                 <select name="cita_paciente" id="cita_paciente" class="form-control">
+                    <option value="">Seleccione un paciente</option>
                     <?php foreach ($pacientes as $paciente) : ?>
                          <option value="<?php echo $paciente->paciente_id; ?>"><?php echo $paciente->paciente_nombre; ?></option>
                     <?php endforeach; ?>
@@ -16,6 +17,7 @@
             <div class="col">
                  <label for="cita_medico">Nombre del Médico</label>
                     <select name="cita_medico" id="cita_medico" class="form-control">
+                    <option value="">Seleccione un doctor</option>
                         <?php foreach ($medicos as $medico) : ?>
                             <option value="<?php echo $medico->medico_id; ?>"><?php echo $medico->medico_nombre; ?></option>
                         <?php endforeach; ?>
@@ -38,6 +40,7 @@
         <div class="col">
                 <label for="cita_referencia">Indicar si el Paciente es referido</label>
                 <select name="cita_referencia" id="cita_referencia" class="form-control">
+                    <option value="">Seleccione una opcion</option>
                     <option value="SI">Sí</option>
                     <option value="NO">No</option>
                 </select>

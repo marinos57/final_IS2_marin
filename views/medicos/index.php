@@ -12,6 +12,7 @@
             <div class="col">
                  <label for="medico_especialidad">Especialidad del Médico</label>
                     <select name="medico_especialidad" id="medico_especialidad" class="form-control">
+                        <option value="">Seleccione una especialidad</option>
                         <?php foreach ($especialidades as $especialidad) : ?>
                             <option value="<?php echo $especialidad->especialidad_id; ?>"><?php echo $especialidad->especialidad_nombre; ?></option>
                         <?php endforeach; ?>
@@ -22,6 +23,7 @@
             <div class="col">
                 <label for="medico_clinica">Clínica del Médico</label>
                 <select name="medico_clinica" id="medico_clinica" class="form-control">
+                    <option value="">Seleccione una clínica</option> 
                     <?php foreach ($clinicas as $clinica) : ?>
                         <option value="<?php echo $clinica->clinica_id; ?>"><?php echo $clinica->clinica_nombre; ?></option>
                     <?php endforeach; ?>
