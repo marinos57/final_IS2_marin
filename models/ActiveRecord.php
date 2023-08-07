@@ -136,7 +136,6 @@ class ActiveRecord {
         return $resultado;
     }
 
-
     public static function consultarSQL($query) {
         // Consultar la base de datos
         $resultado = self::$db->query($query);
@@ -161,8 +160,7 @@ class ActiveRecord {
             $data[] = array_change_key_case( array_map( 'utf8_encode', $value) ); 
         }
         $resultado->closeCursor();
-       return $data;
-
+        return $data;
     }
 
         
