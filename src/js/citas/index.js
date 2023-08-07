@@ -164,10 +164,12 @@ const buscar = async () => {
 
 
 const colocarDatos = (datos) => {
+   
+    console.log(datos); 
     formulario.cita_paciente.value = datos.cita_paciente
     formulario.cita_medico.value = datos.cita_medico
     formulario.cita_fecha.value = datos.cita_fecha
-    formulario.cita_hora.value = datos.cita_hora
+    formulario.cita_hora.value = datos.cita_hora.trim()
     formulario.cita_referencia.value = datos.cita_referencia
     formulario.cita_id.value = datos.cita_id
 

@@ -9,9 +9,9 @@
     <?php foreach ($detallesPorFecha as $clinica => $detallesPorClinica) : ?>
         <?php foreach ($detallesPorClinica as $medico => $detallesPorMedico) : ?>
    
-        <div class="container justify-content-center mt-5 bg-light">
-            <table class="table table-bordered table-hover">
-                <thead class="table-bordered table-hover">
+        <div class="container justify-content-center mt-5 bg-light d-flex">
+            <table class="table table-bordered table-hover mt-5 mb-5 mx-5">
+                <thead class="table-bordered table-info">
                     <tr>
                         <th class="text-center" colspan="6">Citas en esta fecha: (<?= $fecha ?>)</th>
                     </tr>
