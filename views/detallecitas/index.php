@@ -9,7 +9,7 @@
     <?php foreach ($detallesPorFecha as $clinica => $detallesPorClinica) : ?>
         <?php foreach ($detallesPorClinica as $medico => $detallesPorMedico) : ?>
    
-        <div class="container justify-content-center mt-5">
+        <div class="container justify-content-center mt-5 bg-light">
             <table class="table table-bordered table-hover">
                 <thead class="table-bordered table-hover">
                     <tr>
