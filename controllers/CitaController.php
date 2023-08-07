@@ -142,8 +142,6 @@ class CitaController{
         $sql = "SELECT
             p.paciente_nombre,
             m.medico_nombre,
-            c.cita_paciente,
-            c.cite_medico, 
             c.cita_fecha,
             c.cita_hora,
             c.cita_referencia,
