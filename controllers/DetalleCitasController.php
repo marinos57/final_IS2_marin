@@ -21,45 +21,55 @@ class DetalleCitasController
     }
 
     public static function getDetallesCitas()
-    {
-        $sql = "
-            SELECT
-                citas.cita_id,
-                pacientes.paciente_nombre,
-                pacientes.paciente_dpi,
-                pacientes.paciente_telefono,
-                citas.cita_hora,
-                citas.cita_referencia,
-                medicos.medico_nombre,
-                clinicas.clinica_nombre,
-                citas.cita_fecha
-            FROM
-                citas
-                JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id
-                JOIN medicos ON citas.cita_medico = medicos.medico_id
-                JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id
-            WHERE
-                citas.cita_situacion = 1;
-        ";
+{
+    $sql = "
+        SELECT
+            citas.cita_id,
+            pacientes.paciente_nombre,
+            pacientes.paciente_dpi,
+            pacientes.paciente_telefono,
+            citas.cita_hora,
+            citas.cita_referencia,
+            medicos.medico_nombre,
+            clinicas.clinica_nombre,
+            citas.cita_fecha
+        FROM
+            citas
+            JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id
+            JOIN medicos ON citas.cita_medico = medicos.medico_id
+            JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id
+        WHERE
+            citas.cita_situacion = 1;
+    ";
 
-        try {
-            // Ejecutar el query y obtener los resultados
-            $detallesCitas = Cita::fetchArray($sql);
+    try {
+        // Ejecutar el query y obtener los resultados
+        $detallesCitas = Cita::fetchArray($sql);
 
-            // Organizar los resultados por médicos
-            $detallesCitasOrganizados = [];
-            foreach ($detallesCitas as $detalleCita) {
-                $medicoNombre = "DOCTOR " . $detalleCita['medico_nombre'];
-                if (!isset($detallesCitasOrganizados[$medicoNombre])) {
-                    $detallesCitasOrganizados[$medicoNombre] = [];
-                }
-                $detallesCitasOrganizados[$medicoNombre][] = $detalleCita;
+        // Organizar los resultados por fecha, clínica y médico
+        $detallesCitasOrganizados = [];
+        foreach ($detallesCitas as $detalleCita) {
+            $fecha = $detalleCita['cita_fecha'];
+            $clinica = $detalleCita['clinica_nombre'];
+            $medicoNombre = "DOCTOR " . $detalleCita['medico_nombre'];
+
+            if (!isset($detallesCitasOrganizados[$fecha])) {
+                $detallesCitasOrganizados[$fecha] = [];
+            }
+            if (!isset($detallesCitasOrganizados[$fecha][$clinica])) {
+                $detallesCitasOrganizados[$fecha][$clinica] = [];
+            }
+            if (!isset($detallesCitasOrganizados[$fecha][$clinica][$medicoNombre])) {
+                $detallesCitasOrganizados[$fecha][$clinica][$medicoNombre] = [];
             }
 
-            return $detallesCitasOrganizados;
-        } catch (Exception $e) {
-            // Manejar el error si es necesario
-            return []; // Si hay un error, retornar un array vacío
+            $detallesCitasOrganizados[$fecha][$clinica][$medicoNombre][] = $detalleCita;
         }
+
+        return $detallesCitasOrganizados;
+    } catch (Exception $e) {
+        // Manejar el error si es necesario
+        return []; // Si hay un error, retornar un array vacío
     }
+}
 }

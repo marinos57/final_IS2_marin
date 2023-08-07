@@ -35,9 +35,12 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col">
+        <div class="col">
                 <label for="cita_referencia">Indicar si el Paciente es referido</label>
-                <input type="text" name="cita_referencia" id="cita_referencia" class="form-control">
+                <select name="cita_referencia" id="cita_referencia" class="form-control">
+                    <option value="SI">Sí</option>
+                    <option value="NO">No</option>
+                </select>
             </div>
         </div>
         <div class="row mb-3">

@@ -4,7 +4,7 @@ namespace Model;
 
 class Cita extends ActiveRecord{
     public static $tabla = 'citas';
-    public static $columnasDB = ['cita_paciente','cita_medico','cita_fecha', 'cita_hora', 'cita_referencia'];
+    public static $columnasDB = ['cita_paciente','cita_medico','cita_fecha', 'cita_hora', 'cita_referencia', 'cita_situacion'];
     public static $idTabla = 'cita_id';
 
     public $cita_id;
