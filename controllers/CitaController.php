@@ -155,14 +155,20 @@ class CitaController{
         WHERE
             c.cita_situacion = 1";
     
-        if (!empty($paciente_nombre)) {
-            $sql .= " AND p.paciente_nombre LIKE '%$paciente_nombre%'";
-        }
+        // if (!empty($paciente_nombre)) {
+        //     $sql .= " AND p.paciente_nombre LIKE '%$paciente_nombre%'";
+        // }
     
-        if (!empty($medico_nombre)) {
-            $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
+        // if (!empty($medico_nombre)) {
+        //     $sql .= " AND m.medico_nombre LIKE '%$medico_nombre%'";
+        // }
+        if (!empty($paciente_nombre)) {
+            $sql .= " AND LOWER(p.paciente_nombre) LIKE '%" . strtolower($paciente_nombre) . "%'";
         }
         
+        if (!empty($medico_nombre)) {
+            $sql .= " AND LOWER(m.medico_nombre) LIKE '%" . strtolower($medico_nombre) . "%'";
+        }
         // if (!empty($cita_paciente)) {
         //     $sql .= " AND c.cita_paciente = '$cita_paciente'";
         // }
