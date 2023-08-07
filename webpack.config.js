@@ -11,7 +11,7 @@ module.exports = {
     'js/pacientes/index': './src/js/pacientes/index.js',
     'js/medicos/index': './src/js/medicos/index.js',
     'js/citas/index': './src/js/citas/index.js',
-    'js/detalles/index': './src/js/detalles/index.js',
+   
 
 
 

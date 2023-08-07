@@ -8,6 +8,8 @@ use Controllers\ClinicaController;
 use Controllers\PacienteController;
 use Controllers\MedicoController;
 use Controllers\CitaController;
+use Controllers\DetalleCitasController;
+
 
 
 $router = new Router();
@@ -54,10 +56,11 @@ $router->post('/API/citas/modificar', [CitaController::class,'modificarAPI'] );
 $router->post('/API/citas/eliminar', [CitaController::class,'eliminarAPI'] );
 $router->get('/API/citas/buscar', [CitaController::class,'buscarAPI'] );
 
-//detalles
 
-$router->get('/detalles', [DetalleController::class,'index'] );
-$router->get('/API/detalles/buscar', [DetalleController::class,'buscarAPI'] );
+
+//detalles
+$router->get('/detallecitas', [DetalleCitasController::class,'index'] );
+
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

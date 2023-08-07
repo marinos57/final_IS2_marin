@@ -28,3 +28,8 @@ class Cita extends ActiveRecord{
     }
 
 }
+
+
+
+
+
