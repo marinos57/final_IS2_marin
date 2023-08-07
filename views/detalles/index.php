@@ -5,21 +5,14 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="cita_paciente">Nombre del Paciente</label>
-                <select name="cita_paciente" id="cita_paciente" class="form-control">
-                    <?php foreach ($pacientes as $paciente) : ?>
-                         <option value="<?php echo $paciente->paciente_id; ?>"><?php echo $paciente->paciente_nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <input type="text" name="cita_paciente" id="cita_paciente" class="form-control">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                  <label for="cita_medico">Nombre del Médico</label>
-                    <select name="cita_medico" id="cita_medico" class="form-control">
-                        <?php foreach ($medicos as $medico) : ?>
-                            <option value="<?php echo $medico->medico_id; ?>"><?php echo $medico->medico_nombre; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <input type="date" name="cita_medico" id="cita_medico" class="form-control">
+
             </div>
         </div>
         <div class="row mb-3">
