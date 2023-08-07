@@ -8,25 +8,22 @@ const btnBuscar = document.getElementById('btnBuscar');
 const divTabla = document.getElementById('divTabla');
 
 const buscar = async () => {
-    let cita_paciente = formulario.cita_paciente.value;
-    let cita_medico = formulario.cita_medico.value;
     let cita_fecha = formulario.cita_fecha.value;
-    let cita_hora = formulario.cita_hora.value;
-    let cita_referencia = formulario.cita_referencia.value;
 
-    const url = `/final_IS2_marin/API/citas/buscar`;
+    const url = `/final_IS2_marin/API/citas/buscar`; // Ruta de la API para buscar citas
     const headers = new Headers();
     headers.append("X-Requested-With", "fetch");
+
     const config = {
-        method : 'GET',
+        method: 'GET',
         headers,
-            
     }
 
     try {
+        // Realizamos la petición a la API para obtener las citas
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-        console.log(data);
+
 
         tablaCitas.tBodies[0].innerHTML = '';
         const fragment = document.createDocumentFragment();
@@ -34,36 +31,42 @@ const buscar = async () => {
         if (data.length > 0) {
             let contador = 1;
             data.forEach(cita => {
-                // CREAMOS ELEMENTOS
-                const tr = document.createElement('tr');
-                const td1 = document.createElement('td');
-                const td2 = document.createElement('td');
-                const td3 = document.createElement('td');
-                const td4 = document.createElement('td');
-                const td5 = document.createElement('td');
-                const td6 = document.createElement('td');
-             
-                td1.innerText = contador;
-                td2.innerText = cita.paciente_nombre;
-                td3.innerText = cita.medico_nombre; // Nombre del médico
-                td4.innerText = cita.cita_fecha;
-                td5.innerText = cita.cita_hora;
-                td6.innerText = cita.cita_referencia;
+               // Suponiendo que 'resultados' contiene los datos de la consulta a la base de datos
 
-                // ESTRUCTURANDO DOM
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                tr.appendChild(td4);
-                tr.appendChild(td5);
-                tr.appendChild(td6);
-                tr.appendChild(td7);
-                tr.appendChild(td8);
+                // Obtener la referencia a la tabla
+                const tabla = document.getElementById("tabla_citas");
 
-                fragment.appendChild(tr);
+                // Obtener la referencia al elemento donde se mostrará la fecha de búsqueda
+                const fechaBusquedaElement = document.getElementById("fecha_busqueda");
 
-                contador++;
-            });
+                // Mostrar la fecha de búsqueda en la cabecera de la tabla
+                fechaBusquedaElement.textContent = "CITAS PARA EL DÍA DE HOY Y LA FECHA QUE SE BUSCÓ: " + fechaBusqueda;
+
+                // Recorrer los resultados y construir las filas de la tabla
+                resultados.forEach((fila) => {
+                const nuevaFila = document.createElement("tr");
+
+                // Columna 1: CLINICA_NOMBRE
+                const columna1 = document.createElement("td");
+                columna1.textContent = fila.clinica_nombre;
+                nuevaFila.appendChild(columna1);
+
+                // Columna 2: MEDICO_NOMBRE
+                const columna2 = document.createElement("td");
+                columna2.textContent = "DOCTOR " + fila.medico_nombre;
+                nuevaFila.appendChild(columna2);
+
+                // Columnas 3 a 8: Datos del paciente y cita
+                const columnasPaciente = ["NO", "PACIENTE", "DPI", "TELEFONO", "HORA DE LA CITA", "REFERIDO (SI/NO)"];
+                columnasPaciente.forEach((columna) => {
+                    const nuevaColumna = document.createElement("td");
+                    nuevaColumna.textContent = fila[columna.toLowerCase()] || ""; // Agregar datos del paciente o dejar vacío si no hay valor
+                    nuevaFila.appendChild(nuevaColumna);
+                });
+
+                // Agregar la fila a la tabla
+                tabla.appendChild(nuevaFila);
+                });
 
         } else {
             const tr = document.createElement('tr');
