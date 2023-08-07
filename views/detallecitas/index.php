@@ -1,5 +1,3 @@
-<h1>Detalles de Citas</h1>
-
 <?php foreach ($detallesCitas as $fecha => $detallesPorFecha) : ?>
     <?php foreach ($detallesPorFecha as $clinica => $detallesPorClinica) : ?>
         <?php foreach ($detallesPorClinica as $medico => $detallesPorMedico) : ?>
@@ -9,7 +7,7 @@
                         <th colspan="6">Citas para el día de hoy (<?= $fecha ?>)</th>
                     </tr>
                     <tr>
-                        <th colspan="6">Clínica: <?= $clinica ?> - Doctor <?= $medico ?></th>
+                        <th colspan="6">Clínica: <?= $clinica ?> - Doctor <?= $medico ?> (<?= $detallesPorMedico[0]['especialidad_nombre'] ?>)</th>
                     </tr>
                     <tr>
                         <th>No.</th>
@@ -36,4 +34,3 @@
         <?php endforeach ?>
     <?php endforeach ?>
 <?php endforeach ?>
-

@@ -20,27 +20,31 @@ class DetalleCitasController
         ]);
     }
 
+
+
     public static function getDetallesCitas()
 {
-    $sql = "
-        SELECT
-            citas.cita_id,
-            pacientes.paciente_nombre,
-            pacientes.paciente_dpi,
-            pacientes.paciente_telefono,
-            citas.cita_hora,
-            citas.cita_referencia,
-            medicos.medico_nombre,
-            clinicas.clinica_nombre,
-            citas.cita_fecha
-        FROM
-            citas
-            JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id
-            JOIN medicos ON citas.cita_medico = medicos.medico_id
-            JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id
-        WHERE
-            citas.cita_situacion = 1;
-    ";
+    $sql =  "
+    SELECT
+        citas.cita_id,
+        pacientes.paciente_nombre,
+        pacientes.paciente_dpi,
+        pacientes.paciente_telefono,
+        citas.cita_hora,
+        citas.cita_referencia,
+        medicos.medico_nombre,
+        clinicas.clinica_nombre,
+        citas.cita_fecha,
+        especialidades.especialidad_nombre
+    FROM
+        citas
+        JOIN pacientes ON citas.cita_paciente = pacientes.paciente_id
+        JOIN medicos ON citas.cita_medico = medicos.medico_id
+        JOIN clinicas ON medicos.medico_clinica = clinicas.clinica_id
+        JOIN especialidades ON medicos.medico_especialidad = especialidades.especialidad_id
+    WHERE
+        citas.cita_situacion = 1;
+";
 
     try {
         // Ejecutar el query y obtener los resultados

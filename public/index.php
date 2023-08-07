@@ -60,6 +60,7 @@ $router->get('/API/citas/buscar', [CitaController::class,'buscarAPI'] );
 
 //detalles
 $router->get('/detallecitas', [DetalleCitasController::class,'index'] );
+// $router->get('/API/detallecitas/buscarporCitas', [DetalleCitasController::class,'buscarPorCitas'] );
 
 
 
