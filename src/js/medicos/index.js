@@ -75,12 +75,12 @@ const buscar = async () => {
     let medico_especialidad = formulario.medico_especialidad.value;
     let medico_clinica = formulario.medico_clinica.value;
     const url = `/final_IS2_marin/API/medicos/buscar?medico_nombre=${medico_nombre}&medico_especialidad=${medico_especialidad}&medico_clinica=${medico_clinica}`;
-    const headers = new Headers();
-    headers.append("X-Requested-With", "fetch");
+    // const headers = new Headers();
+    // headers.append("X-Requested-With", "fetch");
     const config = {
         method : 'GET',
-        headers,
-            body
+        // headers,
+            // body
     }
 
     try {
